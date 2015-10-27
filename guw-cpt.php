@@ -74,4 +74,16 @@ if ( false !== $_REQUEST['updated'] ) : ?>
 <?php
 }
 
+
+function register_custom_post_type() {
+    settings_fields( 'guw-cpt_settings' );
+    $options = get_option( 'guw-cpt_settings' );
+
+
+
+
+}
+
+
+
 ?>
