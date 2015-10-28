@@ -97,7 +97,7 @@ function cpt_create_project_custom_post_type()
 
 add_action('init', 'cpt_create_project_custom_post_type', 0);
 
-function register_custom_post_type() {
+function cpt_register_custom_post_type() {
     //Custom query of the Home Page Sections category of posts
     $args = array(
         'post_type' => 'cpts',
@@ -124,13 +124,13 @@ function register_custom_post_type() {
             );
         endwhile;
         wp_reset_postdata();
-    } ?>
+    }
 
 
 
 
 }
-
+add_action('init', 'cpt_register_custom_post_type', 0);
 
 
 ?>
