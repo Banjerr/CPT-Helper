@@ -74,10 +74,57 @@ if ( false !== $_REQUEST['updated'] ) : ?>
 <?php
 }
 
+/**
+ * Create the CPT post type to store the other post types created by the user.
+ * @return void
+ */
+function cpt_create_project_custom_post_type()
+{
+    register_post_type('cpts',
+        array(
+            'labels' => array(
+                'name' => __('CPTS'),
+                'singular_name' => __('CPT')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'supports' => array('title'),
+            'menu_icon' => 'dashicons-groups',
+            'rewrite' => array('slug' => 'cpts')
+        )
+    );
+}
+
+add_action('init', 'cpt_create_project_custom_post_type', 0);
 
 function register_custom_post_type() {
-    settings_fields( 'guw-cpt_settings' );
-    $options = get_option( 'guw-cpt_settings' );
+    //Custom query of the Home Page Sections category of posts
+    $args = array(
+        'post_type' => 'cpts',
+        'order' => 'ASC',
+        'paged' => $paged
+    );
+
+    $queryTwo = new WP_Query($args);
+
+    if ($queryTwo->have_posts()) {
+        while ($queryTwo->have_posts()) :
+            register_post_type('POST_NAME_HERE',
+                array(
+                    'labels' => array(
+                        'name' => __('POST_NAME_HERE'),
+                        'singular_name' => __('SINGLE_POST_NAME_HERE')
+                    ),
+                    'public' => true,
+                    'has_archive' => true,
+                    'supports' => array('title'),
+                    'menu_icon' => 'dashicons-groups',
+                    'rewrite' => array('slug' => 'cpts')
+                )
+            );
+        endwhile;
+        wp_reset_postdata();
+    } ?>
 
 
 
