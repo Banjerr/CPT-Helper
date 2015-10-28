@@ -126,9 +126,6 @@ function cpt_register_custom_post_type() {
         wp_reset_postdata();
     }
 
-
-
-
 }
 add_action('init', 'cpt_register_custom_post_type', 0);
 
