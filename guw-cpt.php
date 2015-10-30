@@ -97,6 +97,11 @@ function cpt_create_project_custom_post_type()
 
 add_action('init', 'cpt_create_project_custom_post_type', 0);
 
+
+/**
+ * Register the Custom Post Types that are created under the main CPT custom post type
+ * @return void
+ */
 function cpt_register_custom_post_type() {
     //Custom query of the Home Page Sections category of posts
     $args = array(
